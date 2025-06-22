@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  hello-world-agent:
+    container_name: hello-world-agent
+    build:
+      context: .
+      dockerfile: hello-world-agent/tools/Dockerfile.dev
+    working_dir: /app
+    volumes:
+      - ./hello-world-agent/:/app
+    ports:
+      - "8080:8080"
