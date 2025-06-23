@@ -17,6 +17,20 @@ services:
     ports:
       - "127.0.0.1:8080:8080"
 
+  adk-apiserver:
+    container_name: adk-apiserver
+    build:
+      context: .
+      dockerfile: adk-apiserver/ops/Dockerfile.dev
+    environment:
+      PORT: 8081
+      AGENTS_DIR: /app/agents
+    working_dir: /app
+    volumes:
+      - ./agents/:/app/agents
+    ports:
+      - "127.0.0.1:8081:8081"
+
   # # AGENTS - let's have some fun with agents!
   # hello-world-agent:
   #   container_name: hello-world-agent

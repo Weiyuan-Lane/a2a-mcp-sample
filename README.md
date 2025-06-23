@@ -6,11 +6,29 @@
 
 # Concepts
 
-Concept 1
+### Concept 1 - ADK is crazy awesome
+
+By using ADK, you can
+- Run `adk web` to host a local web server to test your agents directly
+- Run `adk run` to test your agents directly, but with your terminal this time
+- Run `adk api_server` to have local api server that emulates how it looks like when you deploy to cloud run and more
+- Run `adk create` to create an agent template
 - Using ADK and integrating with ADK web for development purpose
 
+# Run Everything!
 
-# Maintenance instructions
+Run `docker-compose up` to run everything!
+
+Here's a list of all of the running servers
+
+| **Name**                                   | **Type** | **Test URL (localhost)**                          |
+|--------------------------------------------|----------|---------------------------------------------------|
+| ADK Web UI for agents                      | Dev tool | [localhost:8080](http://localhost:8080)           |
+| ADK Server API (mocking remote deployment) | Dev tool | [localhost:8081](http://localhost:8081/list-apps) |
+|                                            | Agent    | [localhost:8082](http://localhost:8082)           |
+
+# Development utilities
+
 
 ## Update requirements.txt
 ```
