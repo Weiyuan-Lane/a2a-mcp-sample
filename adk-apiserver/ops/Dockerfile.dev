@@ -1,0 +1,16 @@
+FROM python:3.13.5-alpine3.22
+
+WORKDIR /app
+
+ARG FRONTEND_URL_ORIGIN
+ARG PORT
+
+RUN apk add --no-cache \
+    git \
+    curl \
+    bash && \
+    rm -rf /var/cache/apk/* && \
+    pip install google-adk
+
+ENTRYPOINT [ "adk" ]
+CMD [ "api_server", "--allow_origins=${FRONTEND_URL_ORIGIN}", "--host=0.0.0.0", "--port=${PORT}" ]

@@ -1,0 +1,17 @@
+FROM node:24.2-alpine3.22
+
+WORKDIR /app
+
+ARG BACKEND_URL
+ARG PORT
+
+RUN apk add --no-cache \
+    git \
+    curl \
+    bash && \
+    rm -rf /var/cache/apk/* && \
+    git clone git@github.com:google/adk-web.git && \
+    npm i
+
+ENTRYPOINT [ "npm" ]
+CMD [ "run", "serve", "--port=${PORT}", "--backend=${BACKEND_URL}" ]

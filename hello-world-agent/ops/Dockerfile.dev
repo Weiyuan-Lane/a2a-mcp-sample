@@ -9,4 +9,4 @@ RUN apk add --no-cache \
     bash && \
     rm -rf /var/cache/apk/*
 
-ENTRYPOINT [ "/app/tools/python-dev-run.sh" ]
+ENTRYPOINT [ "/app/ops/python-dev-run.sh" ]
