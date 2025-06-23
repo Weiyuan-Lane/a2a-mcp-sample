@@ -42,3 +42,14 @@ services:
   #     - ./hello-world-agent/:/app
   #   ports:
   #     - "8082:8080"
+
+  agent-google-search:
+    container_name: agent-google-search
+    build:
+      context: .
+      dockerfile: agents/google-search/ops/Dockerfile.dev
+    working_dir: /app
+    volumes:
+      - ./agents/google-search/:/app
+    ports:
+      - "8083:8083"
