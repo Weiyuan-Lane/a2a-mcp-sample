@@ -1,8 +1,5 @@
 MAKEFLAGS += --silent
 
-bash-adk-apiserver:
-	@docker exec -it adk-apiserver bash
-
 bash-adk-web:
 	@docker exec -it adk-web bash
 
