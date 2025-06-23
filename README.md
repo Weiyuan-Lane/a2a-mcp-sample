@@ -1,7 +1,7 @@
 
 # Principles
 
-- In development, most if not all webservers containing agent(s), or adk-web, or adk web-server, will run on port 8080, for ease of local debuggability
+- In development, most if not all webservers containing agent(s), or adk-web, or adk web-server, will start numbering from port 8080, for ease of local debuggability
   - From docker-compose, we might expose it on a different port externally. Check `docker-compose.yml` for the latest updated value here
 
 # Concepts

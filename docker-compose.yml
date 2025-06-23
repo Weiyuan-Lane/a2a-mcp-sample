@@ -3,42 +3,28 @@ version: '3.8'
 services:
   # ADK web app for development purposes only
   # - This service builds the ADK web application and serves it on port 8080
-  # - Make sure it interfaces to the adk-apiserver
   adk-web:
     container_name: adk-web
     build:
       context: .
       dockerfile: adk-web/ops/Dockerfile.dev
-      args:
-        BACKEND_URL: http://adk-apiserver:8080
-        PORT: 8080
-    working_dir: /app
-    ports:
-      - "8080:8080"
-
-  # ADK API server for development purposes only
-  adk-apiserver:
-    container_name: adk-apiserver
-    build:
-      context: .
-      dockerfile: adk-apiserver/ops/Dockerfile.dev
-      args:
-        FRONTEND_URL_ORIGIN: http://localhost:8080
-        PORT: 8080
+    environment:
+      PORT: 8080
+      AGENTS_DIR: /app/agents
     working_dir: /app
     volumes:
-      - ./agents/:/app
+      - ./agents/:/app/agents
     ports:
-      - "8081:8080"
+      - "127.0.0.1:8080:8080"
 
-  # AGENTS - let's have some fun with agents!
-  hello-world-agent:
-    container_name: hello-world-agent
-    build:
-      context: .
-      dockerfile: hello-world-agent/ops/Dockerfile.dev
-    working_dir: /app
-    volumes:
-      - ./hello-world-agent/:/app
-    ports:
-      - "8080:8080"
+  # # AGENTS - let's have some fun with agents!
+  # hello-world-agent:
+  #   container_name: hello-world-agent
+  #   build:
+  #     context: .
+  #     dockerfile: hello-world-agent/ops/Dockerfile.dev
+  #   working_dir: /app
+  #   volumes:
+  #     - ./hello-world-agent/:/app
+  #   ports:
+  #     - "8082:8080"
