@@ -1,13 +1,30 @@
 version: '3.8'
 
 services:
-  hello-world-agent:
-    container_name: hello-world-agent
+  # ADK web app for development purposes only
+  # - This service builds the ADK web application and serves it on port 8080
+  adk-web:
+    container_name: adk-web
     build:
       context: .
-      dockerfile: hello-world-agent/tools/Dockerfile.dev
+      dockerfile: adk-web/ops/Dockerfile.dev
+    environment:
+      PORT: 8080
+      AGENTS_DIR: /app/agents
     working_dir: /app
     volumes:
-      - ./hello-world-agent/:/app
+      - ./agents/:/app/agents
     ports:
-      - "8080:8080"
+      - "127.0.0.1:8080:8080"
+
+  # # AGENTS - let's have some fun with agents!
+  # hello-world-agent:
+  #   container_name: hello-world-agent
+  #   build:
+  #     context: .
+  #     dockerfile: hello-world-agent/ops/Dockerfile.dev
+  #   working_dir: /app
+  #   volumes:
+  #     - ./hello-world-agent/:/app
+  #   ports:
+  #     - "8082:8080"
