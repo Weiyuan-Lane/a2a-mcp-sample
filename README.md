@@ -15,6 +15,10 @@ By using ADK, you can
 - Run `adk create` to create an agent template
 - Using ADK and integrating with ADK web for development purpose
 
+### Concept 2 - A2A
+
+- `execute` and `cancel`
+
 # Run Everything!
 
 Run `docker-compose up` to run everything!
@@ -32,6 +36,18 @@ Here's a list of all of the running servers
 ```
 make util-create-agent name="YOUR_AGENT_NAME"
 ```
+
+# Planned scenarios (To change to table later)
+
+Simple
+- ADK - tool and schema use case
+- ADK Agent - ADK tool
+- ADK Agent - Custom tool
+- ADK Agent - MCP tool
+- ADK Agent - ADK Agent (sub agent)
+- A2A Server Agent (Hello World!)
+- A2A Client Agent - A2A Server Agent (All tools above!)
+
 
 ## Update requirements.txt
 ```
