@@ -49,6 +49,9 @@ services:
       context: .
       dockerfile: agents/google-search/ops/Dockerfile.dev
     working_dir: /app
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8083
     volumes:
       - ./agents/google-search/:/app
     ports:
