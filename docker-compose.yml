@@ -31,6 +31,19 @@ services:
     ports:
       - "127.0.0.1:8081:8081"
 
+  # Agent API Docs server (using swagger)
+  # This makes it easy to test the Agent API endpoints, whether local or remote
+  agent-api-docs:
+    build:
+      context: .
+      dockerfile: agent-api-docs/ops/Dockerfile.dev
+    volumes:
+      - ./agent-api-docs/assets/:/assets/
+      - ./agent-api-docs/docs/:/docs/
+    ports:
+      - '8082:8080'
+
+
   # # AGENTS - let's have some fun with agents!
   # hello-world-agent:
   #   container_name: hello-world-agent

@@ -25,11 +25,13 @@ Run `docker-compose up` to run everything!
 
 Here's a list of all of the running servers
 
-| **Name**                                   | **Type** | **Test URL (localhost)**                          | **Bash command**          |
-|--------------------------------------------|----------|---------------------------------------------------|---------------------------|
-| ADK Web Chat Tester                        | Dev tool | [localhost:8080](http://localhost:8080)           | `make bash-adk-web`       |
-| ADK Server API (mocking remote deployment) | Dev tool | [localhost:8081](http://localhost:8081/list-apps) | `make bash-adk-apiserver` |
-|                                            | Agent    | [localhost:8082](http://localhost:8082)           |                           |
+| **Name**                                   | **Type** | **Test URL (localhost)**                          | **Bash command**                |
+|--------------------------------------------|----------|---------------------------------------------------|---------------------------------|
+| ADK Web Chat Tester                        | Dev tool | [localhost:8080](http://localhost:8080)           | `make bash-adk-web`             |
+| ADK Server API (mocking remote deployment) | Dev tool | [localhost:8081](http://localhost:8081/list-apps) | `make bash-adk-apiserver`       |
+| API Docs for agent API endpoints (Swagger) | Dev tool | [localhost:8082](http://localhost:8082)           | -                               |
+|                                            |          |                                                   |                                 |
+| Google Search powered agent                | Agent    | [localhost:8083](http://localhost:8083)           | `make bash-agent-google-search` |
 
 # Development utilities
 

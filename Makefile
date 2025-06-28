@@ -12,7 +12,7 @@ bash-agent-google-search:
 	@docker exec -it agent-google-search bash -c "source ./local-env/bin/activate && bash"
 
 bash-hello-world-agent:
-	@docker exec -it hello-world-agent bash -c "source ./local-env/bin/activate"
+	@docker exec -it hello-world-agent bash -c "source ./local-env/bin/activate && bash"
 
 # UTIL utilities
 
