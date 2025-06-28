@@ -50,12 +50,3 @@ Simple
 - A2A Server Agent (Hello World!)
 - A2A Client Agent - A2A Server Agent (All tools above!)
 
-
-## Update requirements.txt
-```
-python3 -m  pipreqs.pipreqs . --force
-```
-OR
-```
-pip freeze >requirements.txt
-```
