@@ -13,7 +13,6 @@ from a2a.types import (
 )
 
 from google.adk.tools import ToolContext
-from src.a2a_tools.runtime_config import A2ARunConfig
 
 class HelloWorldGreeterAgent:
     def __init__(self, agent_url: str):
@@ -25,6 +24,9 @@ class HelloWorldGreeterAgent:
         """
         For user's first message that greets the agent, greet the user with a nice message
         This should only trigger for the first message from the user, and not subsequent messages
+
+        Args:
+            user_message: The user's message to send to the hello world greeter agent
         """
         request = SendMessageRequest(
             id=str(uuid4()),

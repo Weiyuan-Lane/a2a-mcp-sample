@@ -44,7 +44,7 @@ services:
       - '127.0.0.1:8082:8080'
 
 
-  # # AGENTS - let's have some fun with agents!
+  # AGENTS - let's have some fun with agents!
   agent-a2a-agent-master:
     container_name: agent-a2a-agent-master
     build:
@@ -89,3 +89,33 @@ services:
       - ./agents/google-search/:/app
     ports:
       - "127.0.0.1:8085:8085"
+
+  agent-financial-planner:
+    container_name: agent-financial-planner
+    build:
+      context: .
+      dockerfile: agents/financial-planner/ops/Dockerfile.dev
+    working_dir: /app
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8086
+      WELL_KNOWN_HOST: agent-financial-planner
+    volumes:
+      - ./agents/financial-planner/:/app
+    ports:
+      - "127.0.0.1:8086:8086"
+
+  # MCP Servers - to integrate with ADK agents too!
+  mcp-server-exchange-rate:
+    container_name: mcp-server-exchange-rate
+    build:
+      context: .
+      dockerfile: mcp-servers/exchange-rate/ops/Dockerfile.dev
+    working_dir: /app
+    environment:
+      HOST: 0.0.0.0
+      PORT: 9000
+    volumes:
+      - ./mcp-servers/exchange-rate/:/app
+    ports:
+      - "127.0.0.1:9000:9000"

@@ -14,17 +14,22 @@ from a2a.types import (
 
 from google.adk.tools import ToolContext
 
-class GoogleSearchAgent:
+class FinancialPlannerAgent:
     def __init__(self, agent_url: str):
         self.agent_url = agent_url
 
-    async def invoke_google_search_agent_via_a2a(
-        self, search_query: str, tool_context: ToolContext
+    async def invoke_financial_planner_agent_via_a2a(
+        self, financial_query: str, tool_context: ToolContext
     ):
-        """Send a search query to the google search agent
+        """Sends various financial planning questions to the Mr. Financial Planner agent
+
+        This agent currently supports the following functions:
+        - What is the exchange rate between two currencies?
+        - What is the historical exchange rate between two currencies?
+        - Describing or retrieving details of a currency
 
         Args:
-            search_query: The search query to send to the google search agent
+            financial_query: The financial query to send to the financial planner agent
         """
         request = SendMessageRequest(
             id=str(uuid4()),
@@ -34,7 +39,7 @@ class GoogleSearchAgent:
                     taskId=tool_context.state.get('task_id'),
                     messageId=str(uuid4()),
                     role=Role.user,
-                    parts=[Part(TextPart(text=search_query))],
+                    parts=[Part(TextPart(text=financial_query))],
                 )
             ),
         )
@@ -57,7 +62,7 @@ class GoogleSearchAgent:
             task_updater.update_status(
                 TaskState.working,
                 message=task_updater.new_agent_message(
-                    [Part(TextPart(text='Waiting for google search agent to respond...'))]
+                    [Part(TextPart(text='Waiting for Mr. Financial Planner...'))]
                 ),
             )
         except Exception as e:
