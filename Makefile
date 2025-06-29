@@ -17,6 +17,9 @@ bash-agent-hello-world-greeter:
 bash-agent-google-search:
 	@docker exec -it agent-google-search bash -c "source ./local-env/bin/activate && bash"
 
+bash-mcp-server-exchange-rate:
+	@docker exec -it mcp-server-exchange-rate bash -c "source ./local-env/bin/activate && bash"
+
 # UTIL utilities
 
 util-create-agent:
