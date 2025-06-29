@@ -31,6 +31,19 @@ services:
     ports:
       - "127.0.0.1:8081:8081"
 
+  # Agent API Docs server (using swagger)
+  # This makes it easy to test the Agent API endpoints, whether local or remote
+  agent-api-docs:
+    build:
+      context: .
+      dockerfile: agent-api-docs/ops/Dockerfile.dev
+    volumes:
+      - ./agent-api-docs/assets/:/assets/
+      - ./agent-api-docs/docs/:/docs/
+    ports:
+      - '127.0.0.1:8082:8080'
+
+
   # # AGENTS - let's have some fun with agents!
   # hello-world-agent:
   #   container_name: hello-world-agent
@@ -42,3 +55,33 @@ services:
   #     - ./hello-world-agent/:/app
   #   ports:
   #     - "8082:8080"
+
+  agent-a2a-agent-master:
+    container_name: agent-a2a-agent-master
+    build:
+      context: .
+      dockerfile: agents/a2a-agent-master/ops/Dockerfile.dev
+    working_dir: /app
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8083
+      WELL_KNOWN_HOST: agent-a2a-agent-master
+    volumes:
+      - ./agents/a2a-agent-master/:/app
+    ports:
+      - "127.0.0.1:8083:8083"
+
+  agent-google-search:
+    container_name: agent-google-search
+    build:
+      context: .
+      dockerfile: agents/google-search/ops/Dockerfile.dev
+    working_dir: /app
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8084
+      WELL_KNOWN_HOST: agent-google-search
+    volumes:
+      - ./agents/google-search/:/app
+    ports:
+      - "127.0.0.1:8084:8084"

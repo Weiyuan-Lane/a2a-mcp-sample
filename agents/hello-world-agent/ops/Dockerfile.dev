@@ -1,6 +1,5 @@
 FROM python:3.13.5-alpine3.22
 
-EXPOSE 8080
 WORKDIR /app
 
 RUN apk add --no-cache \

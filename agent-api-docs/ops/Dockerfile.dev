@@ -1,0 +1,7 @@
+FROM swaggerapi/swagger-ui:v3.38.0
+
+RUN apk add --no-cache inotify-tools
+
+COPY agent-api-docs/ops/run.sh /
+
+ENTRYPOINT [ "/run.sh" ]
