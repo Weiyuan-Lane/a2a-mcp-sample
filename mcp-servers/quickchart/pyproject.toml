@@ -1,0 +1,18 @@
+[project]
+name = "mcp_exchange_rate_server"
+version = "0.1.0"
+description = "A MCP compliant quickchart server"
+authors = [
+    {name = "Weiyuan Liu"}
+]
+readme = "README.md"
+requires-python = ">=3.13,<4.0"
+dependencies = [
+    "python-dotenv (>=1.1.0,<2.0.0)",
+    "fastmcp (>=2.9.2,<3.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

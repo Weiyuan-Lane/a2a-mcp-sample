@@ -130,8 +130,6 @@ def exchange_rate_time_series_data(
         from_currency_upper = from_currency.upper()
         to_currency_upper = to_currency.upper()
 
-        print(f"DEBUG Data: {from_currency_upper} --> {to_currency_upper} --> {start_date} --> {end_date}")
-
         r = httpx.get(
             f"{CURRENCY_API_HOST}/{start_date}..{end_date}",
             params = {
@@ -158,13 +156,10 @@ def exchange_rate_time_series_data(
             "exchange_rates": exchange_rates,
         }
     except httpx.HTTPError as e:
-        print(f"DEBUG Data: ERROR 1 {e}")
         return { 'error': f"API request failed with error: {e}" }
     except ValueError:
-        print(f"DEBUG Data: ERROR 2 {data}")
         return { 'error': f"API request failed with invalid response body as: {data}"}
     except Exception as e:
-        print(f"DEBUG Data: ERROR 3 {e}")
         return { 'error': f"API request failed with error: {e}" }
 
 def start_mcp_server():

@@ -105,6 +105,21 @@ services:
     ports:
       - "127.0.0.1:8086:8086"
 
+  agent-chart-maker:
+    container_name: agent-chart-maker
+    build:
+      context: .
+      dockerfile: agents/chart-maker/ops/Dockerfile.dev
+    working_dir: /app
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8087
+      WELL_KNOWN_HOST: agent-chart-maker
+    volumes:
+      - ./agents/chart-maker/:/app
+    ports:
+      - "127.0.0.1:8087:8087"
+
   # MCP Servers - to integrate with ADK agents too!
   mcp-server-exchange-rate:
     container_name: mcp-server-exchange-rate
@@ -119,3 +134,17 @@ services:
       - ./mcp-servers/exchange-rate/:/app
     ports:
       - "127.0.0.1:9000:9000"
+
+  mcp-server-quickchart:
+    container_name: mcp-server-quickchart
+    build:
+      context: .
+      dockerfile: mcp-servers/quickchart/ops/Dockerfile.dev
+    working_dir: /app
+    environment:
+      HOST: 0.0.0.0
+      PORT: 9001
+    volumes:
+      - ./mcp-servers/quickchart/:/app
+    ports:
+      - "127.0.0.1:9001:9001"

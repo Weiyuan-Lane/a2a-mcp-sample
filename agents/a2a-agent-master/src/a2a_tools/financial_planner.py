@@ -48,7 +48,6 @@ class FinancialPlannerAgent:
 
         try:
             async with httpx.AsyncClient(timeout=60) as httpx_client:
-                print(f"Sending request to {self.agent_url}")
                 client = await A2AClient.get_client_from_agent_card_url(
                     httpx_client, self.agent_url
                 )
