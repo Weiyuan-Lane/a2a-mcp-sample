@@ -26,7 +26,7 @@ Here's a list of all of the available servers
 Use `ADK Web` to test the above agents (already integrated) easily. Here's how they are plugged together at the moment:
 
 Here's how it looks like together:
-
+![preview](https://private-user-images.githubusercontent.com/3222800/460322151-a46c30cd-dc79-4579-89b2-b33f3d34ba5c.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTEyMTQ0MDYsIm5iZiI6MTc1MTIxNDEwNiwicGF0aCI6Ii8zMjIyODAwLzQ2MDMyMjE1MS1hNDZjMzBjZC1kYzc5LTQ1NzktODliMi1iMzNmM2QzNGJhNWMucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI1MDYyOSUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTA2MjlUMTYyMTQ2WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9MDcyNWIyZWNkYjg2YTg1YTg2M2Y1MDg2ZTE0ZjMzZjI2NjcwYjUyYTE2NzM4ZmYzZTJjYzIwMmYwYjI0MTNjZSZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QifQ.eYW6crUoLWhNDB7HUyPdJ05SZd67ZXURzHFni1Q_AvE)
 
 # Development utilities
 
@@ -34,4 +34,6 @@ Here's how it looks like together:
 make util-create-agent name="YOUR_AGENT_NAME"
 ```
 
+### Disclaimer
 
+Google Cloud credits are provided for this project. #AISprint 🤖 🥳
