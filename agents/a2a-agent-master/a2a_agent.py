@@ -13,9 +13,68 @@ from a2a.types import (
     UnsupportedOperationError,
 )
 from a2a.utils.errors import ServerError
-from google.adk import Runner
-from google.genai import types
+from a2a.types import (
+    AgentCapabilities,
+    AgentCard,
+    AgentSkill,
+)
+from a2a.server.request_handlers import DefaultRequestHandler
+from a2a.server.apps import A2AStarletteApplication
+from a2a.server.tasks import InMemoryTaskStore
 
+from google.adk.artifacts import InMemoryArtifactService
+from google.adk.memory import InMemoryMemoryService
+from google.adk.runners import Runner
+from google.adk.sessions import InMemorySessionService
+from google.adk import Runner
+
+from google.genai import types
+from agent import root_agent
+from src.a2a_tools.runtime_config import A2ARunConfig
+
+def get_a2a_routes(fqdn: str):
+    # A2A Agent Skill definition
+    skill = AgentSkill(
+        id="a2a_agent_master",
+        name="Task Delegation tool",
+        description="A helpful assistant help delegate tasks to other agents",
+        tags=["agent task delegation"],
+        examples=[
+            "Help me find the latest news on AI"
+        ],
+    )
+
+    # A2A Agent Card definition
+    agent_card = AgentCard(
+        name="A2A Agent Master",
+        description="An agent that is master of all agents",
+        url=fqdn,
+        version="1.0.0",
+        defaultInputModes=["text"],
+        defaultOutputModes=["text"],
+        capabilities=AgentCapabilities(streaming=True),
+        skills=[skill],
+    )
+
+    # Create the ADK runner and executor.
+    runner = Runner(
+        app_name=agent_card.name,
+        agent=root_agent,
+        artifact_service=InMemoryArtifactService(),
+        session_service=InMemorySessionService(),
+        memory_service=InMemoryMemoryService(),
+    )
+    agent_executor = ADKAgentExecutor(runner, agent_card)
+
+    request_handler = DefaultRequestHandler(
+        agent_executor=agent_executor, task_store=InMemoryTaskStore()
+    )
+
+    a2a_app = A2AStarletteApplication(
+        agent_card=agent_card, http_handler=request_handler
+    )
+
+    return a2a_app.routes()
 
 class ADKAgentExecutor(AgentExecutor):
     """An AgentExecutor that runs an ADK-based Agent."""
@@ -43,6 +102,7 @@ class ADKAgentExecutor(AgentExecutor):
 
     async def cancel(self):
         # Ideally: kill any ongoing tasks.
+        # Maybe not a good idea for production, but if we have reference to the task, we can cancel it.
         raise ServerError(error=UnsupportedOperationError())
 
     # Runner needs session id for your agent to work
@@ -79,6 +139,7 @@ class ADKAgentExecutor(AgentExecutor):
             session_id=session.id,
             user_id=session.user_id,
             new_message=new_message,
+            run_config=A2ARunConfig(current_task_updater=updater),
         ):
             if event.is_final_response():
                 parts = convert_genai_parts_to_a2a(event.content.parts)

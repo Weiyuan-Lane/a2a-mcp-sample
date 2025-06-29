@@ -41,12 +41,10 @@ make util-create-agent name="YOUR_AGENT_NAME"
 
 # Planned scenarios (To change to table later)
 
-Simple
-- ADK - tool and schema use case
-- ADK Agent - ADK tool
-- ADK Agent - Custom tool
+- ADK Agent - ADK tool ✅
+- ADK Agent - Custom tool ❓
 - ADK Agent - MCP tool
-- ADK Agent - ADK Agent (sub agent)
-- A2A Server Agent (Hello World!)
-- A2A Client Agent - A2A Server Agent (All tools above!)
+- ADK Agent - ADK Agent (sub agent) 
+- A2A Server Agent ❓
+- A2A Client Agent - A2A Server Agent (All tools above!) ❓
 

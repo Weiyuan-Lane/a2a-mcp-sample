@@ -1,7 +1,7 @@
 [project]
-name = "google_search"
+name = "a2a_agent_master"
 version = "0.1.0"
-description = "A google search agent"
+description = "A a2a master of all agents"
 authors = [
     {name = "Weiyuan Liu"}
 ]

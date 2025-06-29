@@ -8,11 +8,11 @@ bash-adk-web:
 bash-adk-apiserver:
 	@docker exec -it adk-apiserver bash
 
+bash-agent-a2a-agent-master:
+	@docker exec -it agent-a2a-agent-master bash -c "source ./local-env/bin/activate && bash"
+
 bash-agent-google-search:
 	@docker exec -it agent-google-search bash -c "source ./local-env/bin/activate && bash"
-
-bash-hello-world-agent:
-	@docker exec -it hello-world-agent bash -c "source ./local-env/bin/activate && bash"
 
 # UTIL utilities
 
