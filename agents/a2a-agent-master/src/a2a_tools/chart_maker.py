@@ -14,19 +14,19 @@ from a2a.types import (
 
 from google.adk.tools import ToolContext
 
-class HelloWorldGreeterAgent:
+class ChartMakerAgent:
     def __init__(self, agent_url: str):
         self.agent_url = agent_url
 
-    async def invoke_hello_world_greeter_agent_via_a2a(
-        self, user_message: str, tool_context: ToolContext
+    async def invoke_chart_maker_agent_via_a2a(
+        self, user_query: str, tool_context: ToolContext
     ):
-        """
-        For user's first message that greets the agent, greet the user with a nice message
-        This should only trigger for the first message from the user, and not subsequent messages
+        """Based on the user query, forward it to the chart maker agent to make a chart
 
         Args:
-            user_message: The user's message to send to the hello world greeter agent
+            user_query: The user query to send to the chart maker agent to make a chart
+
+        Show the request_uri in your response for users to click into.
         """
         request = SendMessageRequest(
             id=str(uuid4()),
@@ -36,7 +36,7 @@ class HelloWorldGreeterAgent:
                     taskId=tool_context.state.get('task_id'),
                     messageId=str(uuid4()),
                     role=Role.user,
-                    parts=[Part(TextPart(text=user_message))],
+                    parts=[Part(TextPart(text=user_query))],
                 )
             ),
         )
@@ -58,7 +58,7 @@ class HelloWorldGreeterAgent:
             task_updater.update_status(
                 TaskState.working,
                 message=task_updater.new_agent_message(
-                    [Part(TextPart(text='Waiting for hello world greeter agent to greet you back...'))]
+                    [Part(TextPart(text='Waiting for Mr. Financial Planner...'))]
                 ),
             )
         except Exception as e:

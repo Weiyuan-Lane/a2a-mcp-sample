@@ -17,8 +17,17 @@ bash-agent-hello-world-greeter:
 bash-agent-google-search:
 	@docker exec -it agent-google-search bash -c "source ./local-env/bin/activate && bash"
 
+bash-agent-financial-planner:
+	@docker exec -it agent-financial-planner bash -c "source ./local-env/bin/activate && bash"
+
+bash-agent-chart-maker:
+	@docker exec -it agent-chart-maker bash -c "source ./local-env/bin/activate && bash"
+
 bash-mcp-server-exchange-rate:
 	@docker exec -it mcp-server-exchange-rate bash -c "source ./local-env/bin/activate && bash"
+
+bash-mcp-server-quickchart:
+	@docker exec -it mcp-server-quickchart bash -c "source ./local-env/bin/activate && bash"
 
 # UTIL utilities
 
