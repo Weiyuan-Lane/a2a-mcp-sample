@@ -7,9 +7,8 @@ fi
 
 # Activate the virtual environment and setup tools
 source ./local-env/bin/activate
-python3 -m pip install -U pip setuptools poetry
-# poetry install --no-root
+python3 -m pip install -U pip setuptools poetry watchdog
+poetry install --no-root
 
-sleep 1000000000
-
-# python -B main.py
+# Run the web server
+watchmedo auto-restart --patterns="*.py" --recursive -- python -B main.py

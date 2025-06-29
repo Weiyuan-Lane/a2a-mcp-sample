@@ -45,17 +45,6 @@ services:
 
 
   # # AGENTS - let's have some fun with agents!
-  # hello-world-agent:
-  #   container_name: hello-world-agent
-  #   build:
-  #     context: .
-  #     dockerfile: hello-world-agent/ops/Dockerfile.dev
-  #   working_dir: /app
-  #   volumes:
-  #     - ./hello-world-agent/:/app
-  #   ports:
-  #     - "8082:8080"
-
   agent-a2a-agent-master:
     container_name: agent-a2a-agent-master
     build:
@@ -71,6 +60,21 @@ services:
     ports:
       - "127.0.0.1:8083:8083"
 
+  agent-hello-world-greeter:
+    container_name: agent-hello-world-greeter
+    build:
+      context: .
+      dockerfile: agents/hello-world-greeter/ops/Dockerfile.dev
+    working_dir: /app
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8084
+      WELL_KNOWN_HOST: agent-hello-world-greeter
+    volumes:
+      - ./agents/hello-world-greeter/:/app
+    ports:
+      - "127.0.0.1:8084:8084"
+
   agent-google-search:
     container_name: agent-google-search
     build:
@@ -79,9 +83,9 @@ services:
     working_dir: /app
     environment:
       HOST: 0.0.0.0
-      PORT: 8084
+      PORT: 8085
       WELL_KNOWN_HOST: agent-google-search
     volumes:
       - ./agents/google-search/:/app
     ports:
-      - "127.0.0.1:8084:8084"
+      - "127.0.0.1:8085:8085"
