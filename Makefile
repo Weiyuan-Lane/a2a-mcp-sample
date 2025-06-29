@@ -11,6 +11,9 @@ bash-adk-apiserver:
 bash-agent-a2a-agent-master:
 	@docker exec -it agent-a2a-agent-master bash -c "source ./local-env/bin/activate && bash"
 
+bash-agent-hello-world-greeter:
+	@docker exec -it agent-hello-world-greeter bash -c "source ./local-env/bin/activate && bash"
+
 bash-agent-google-search:
 	@docker exec -it agent-google-search bash -c "source ./local-env/bin/activate && bash"
 

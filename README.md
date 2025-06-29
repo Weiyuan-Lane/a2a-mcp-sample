@@ -25,13 +25,14 @@ Run `docker-compose up` to run everything!
 
 Here's a list of all of the running servers
 
-| **Name**                                   | **Type** | **Test URL (localhost)**                          | **Bash command**                |
-|--------------------------------------------|----------|---------------------------------------------------|---------------------------------|
-| ADK Web Chat Tester                        | Dev tool | [localhost:8080](http://localhost:8080)           | `make bash-adk-web`             |
-| ADK Server API (mocking remote deployment) | Dev tool | [localhost:8081](http://localhost:8081/list-apps) | `make bash-adk-apiserver`       |
-| API Docs for agent API endpoints (Swagger) | Dev tool | [localhost:8082](http://localhost:8082)           | -                               |
-|                                            |          |                                                   |                                 |
-| Google Search powered agent                | Agent    | [localhost:8083](http://localhost:8083)           | `make bash-agent-google-search` |
+| **Name**                                                        | **Type** | **Test URL (localhost)**                          | **Bash command**                      |
+|-----------------------------------------------------------------|----------|---------------------------------------------------|---------------------------------------|
+| ADK Web Chat Tester                                             | Dev tool | [localhost:8080](http://localhost:8080)           | `make bash-adk-web`                   |
+| ADK Server API (mocking remote deployment)                      | Dev tool | [localhost:8081](http://localhost:8081/list-apps) | `make bash-adk-apiserver`             |
+| (Under construction) API Docs for agent API endpoints (Swagger) | Dev tool | [localhost:8082](http://localhost:8082)           | -                                     |
+| A2A master agent delegator (That also supports A2A itself!)     | Agent    | [localhost:8083](http://localhost:8083)           | `make bash-agent-a2a-agent-master`    |
+| Hello world greeter (agent that greets people, simple use case) | Agent    | [localhost:8084](http://localhost:8084)           | `make bash-agent-hello-world-greeter` |
+| Google Search powered agent                                     | Agent    | [localhost:8085](http://localhost:8085)           | `make bash-agent-google-search`       |
 
 # Development utilities
 
