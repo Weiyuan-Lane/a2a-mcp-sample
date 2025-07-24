@@ -21,66 +21,66 @@ async def liveness_check(request: Request) -> JSONResponse:
     """Liveness probe endpoint for health checks"""
     return JSONResponse({})
 
-@mcp.tool()
-def make_chart(
-    json_str: str,
-):
-    """Use this to make a chart image and return it
+# @mcp.tool()
+# def make_chart(
+#     json_str: str,
+# ):
+#     """Use this to make a chart image and return it
 
-    Args:
-        json_str: A QuickChart.io compatible JSON string to make chart from (See example below)
+#     Args:
+#         json_str: A QuickChart.io compatible JSON string to make chart from (See example below)
 
-    Example:
-    {
-        type: 'line',
-        data: {
-            labels: ['January', 'February', 'March', 'April', 'May'],
-            datasets: [
-            {
-                label: 'Dogs',
-                data: [50, 60, 70, 180, 190],
-                fill: false,
-                borderColor: 'blue'
-            },
-            {
-                label: 'Cats',
-                data: [100, 200, 300, 400, 500],
-                fill: false,
-                borderColor: 'green'
-            }
-            ]
-        }
-    }
+#     Example:
+#     {
+#         type: 'line',
+#         data: {
+#             labels: ['January', 'February', 'March', 'April', 'May'],
+#             datasets: [
+#             {
+#                 label: 'Dogs',
+#                 data: [50, 60, 70, 180, 190],
+#                 fill: false,
+#                 borderColor: 'blue'
+#             },
+#             {
+#                 label: 'Cats',
+#                 data: [100, 200, 300, 400, 500],
+#                 fill: false,
+#                 borderColor: 'green'
+#             }
+#             ]
+#         }
+#     }
 
-    Returns:
-        An image of the chart
-    """
+#     Returns:
+#         An image of the chart
+#     """
 
-    try:
-        r = httpx.get(
-            QUICKCHART_HOST,
-            params = {
-                'c': json_str,
-            },
-        )
-        r.raise_for_status()
+#     try:
+#         r = httpx.get(
+#             QUICKCHART_HOST,
+#             params = {
+#                 'c': json_str,
+#             },
+#         )
+#         r.raise_for_status()
 
-        # Convert binary data to base64 and create data URI
-        base64_data = base64.b64encode(r.content).decode('utf-8')
+#         # Convert binary data to base64 and create data URI
+#         base64_data = base64.b64encode(r.content).decode('utf-8')
 
-        return {
-            "type": "image",
-            "content_type": "image/png",
-            "data": base64_data,
-            "encoding": "base64",
-            "description": "Generated chart image",
-            "success": True
-        }
+#         return {
+#             "type": "image",
+#             "content_type": "image/png",
+#             "data": base64_data,
+#             "encoding": "base64",
+#             "description": "Generated chart image",
+#             "success": True
+#         }
 
-    except httpx.HTTPError as e:
-        return { 'error': f"API request failed with error: {e}" }
-    except Exception as e:
-        return { 'error': f"API request failed with error: {e}" }
+#     except httpx.HTTPError as e:
+#         return { 'error': f"API request failed with error: {e}" }
+#     except Exception as e:
+#         return { 'error': f"API request failed with error: {e}" }
 
 @mcp.tool()
 def make_chart(
