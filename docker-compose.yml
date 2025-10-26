@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # ADK web app for development purposes only
   # - This service builds the ADK web application and serves it on port 8080
