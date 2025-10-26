@@ -7,8 +7,8 @@ RUN apk add --no-cache \
     curl \
     bash && \
     rm -rf /var/cache/apk/* && \
-    pip install "google-adk>=1.4.2,<2.0.0" && \
-    pip install "a2a-sdk>=0.2.9,<0.3.0"
+    pip install "google-adk>=1.17.0,<2.0.0" && \
+    pip install "a2a-sdk>=0.3.10,<0.4.0"
 
 ENTRYPOINT [ "sh", "-c" ]
 CMD [ "adk api_server --host=0.0.0.0 --port=$PORT --allow_origins=$FRONTEND_URL_ORIGIN $AGENTS_DIR" ]
