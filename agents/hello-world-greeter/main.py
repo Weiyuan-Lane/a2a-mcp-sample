@@ -1,10 +1,9 @@
 import os
 import uvicorn
 from starlette.applications import Starlette
-from starlette.routing import Route
 from starlette.requests import Request
 from starlette.responses import JSONResponse
-from a2a_agent import get_a2a_routes
+from a2a_agent import get_a2a_starlette_app
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -18,15 +17,12 @@ async def liveness_check(request: Request) -> JSONResponse:
     return JSONResponse({})
 
 def start_web_server():
+    a2a_app = get_a2a_starlette_app(f"http://{WELL_KNOWN_HOST}:{PORT}/")
+
     # Add your non-agent routes here before we start the server
-    all_routes = [
-        Route("/health", liveness_check, methods=["GET"]),
-    ]
+    a2a_app.add_route("/health", liveness_check, methods=["GET"])
 
-    all_routes.extend(get_a2a_routes(f"http://{WELL_KNOWN_HOST}:{PORT}/"))
-
-    app = Starlette(routes=all_routes)
-    uvicorn.run(app, host=HOST, port=PORT)
+    uvicorn.run(a2a_app, host=HOST, port=PORT)
 
 if __name__ == "__main__":
     start_web_server()
